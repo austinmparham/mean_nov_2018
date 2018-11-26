@@ -1,0 +1,23 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+  <h1>
+    Welcome to {{ title }}!
+  </h1>
+  <button (click)="onButtonClick()">Get all mongeese</button>
+  <div>
+  <h2 *ngFor="let mongoose of mongeese">{{ mongoose.name }} <button (click)="onButtonClickParam(mongoose.name)">Show</button></h2>
+  </div>
+  
+
+    <form (submit)="onSubmit()">
+    <p>{{ newMongoose | json }}</p>
+    <input type="text" name="newMongoose.name" [(ngModel)]="newMongoose.name"/>
+    <input type="text" name="newMongoose.favorite_food" [(ngModel)]="newMongoose.favorite_food"/>
+    <input type="number" name="newMongoose.age" [(ngModel)]="newMongoose.age"/>
+    <input type="text" name="newMongoose.gender" [(ngModel)]="newMongoose.gender"/>
+    <input type="submit" value="Make a Mongoose">
+
+    </form>
+
+<router-outlet></router-outlet>
+

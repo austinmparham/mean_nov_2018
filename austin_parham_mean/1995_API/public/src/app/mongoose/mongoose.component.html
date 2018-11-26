@@ -1,0 +1,20 @@
+<h2>{{mongooseToShow.name}}</h2>
+    <form (submit)="onEdit()">
+      <p>{{ mongoose | json }}</p>
+      <label>Edit Name:
+      <input type="text" name="mongoose.name" [(ngModel)]="mongoose.name" />
+      </label>
+      <label>Edit Fave Food:
+      <input type="text" name="mongoose.favorite_food" [(ngModel)]="mongoose.favorite_food" />
+      </label>
+      <label>Edit Age:
+      <input type="number" name="mongoose.age" [(ngModel)]="mongoose.age" />
+      </label>
+      <label>Edit Gender:
+      <input type="text" name="mongoose.gender" [(ngModel)]="mongoose.gender" />
+      </label>
+      <input type="submit" value="Edit Mongoose">
+    </form>
+    <form (submit)="onDelete()">
+      <input type="submit" value="Delete">
+    </form>

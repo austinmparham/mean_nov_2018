@@ -1,0 +1,15 @@
+<h1>Create a New Product</h1>
+<p>{{ newProduct | json }}</p>
+<form (submit)="addProduct()">
+	<label>Title:
+		<input type="text" name="newProduct.title" [(ngModel)]="newProduct.title">
+	</label><br/>
+	<label>Price:
+		<input type="text" name="newProduct.price" [(ngModel)]="newProduct.price">
+	</label><br/>
+	<label>Image URL:
+		<input type="text" name="newProduct.url" [(ngModel)]="newProduct.url">
+	</label><br/>
+	<input type="submit" name="Create">
+</form>
+<a href="/products">Cancel</a>

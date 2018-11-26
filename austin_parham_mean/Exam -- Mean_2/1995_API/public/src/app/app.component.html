@@ -1,0 +1,42 @@
+<head>
+  <style type="text/css" href="app.component.css"></style> <!-- Doesn't work. Find out why. -->
+</head>
+<div style="text-align:center">
+  <h1>
+    {{ title }}
+    {{ newRating | json }}
+  </h1>
+  <div *ngFor="let cake of cakes"> 
+  <h2>{{ cake.baker_name }}</h2>
+  <button (click)="onButtonClickParam(cake.baker_name)">Details</button>
+  <img class="cake_pic" src="{{cake.image_url}}" alt="{{cake.image_url}}">
+  <form (submit)="rateCake(cake.baker_name)">
+    <select name="newRating.star_rate" [(ngModel)]="newRating.star_rate">
+      <option value ="1 Star"> 1 Star</option>
+      <option value ="2 Stars"> 2 Stars</option>
+      <option value ="3 Stars"> 3 Stars</option>
+      <option value ="4 Stars"> 4 Stars</option>
+      <option value ="5 Stars"> 5 Stars</option>
+    </select>
+    <textarea name="newRating.comment" [(ngModel)]="newRating.comment" placeholder="Type your comment here..."></textarea>
+    <input type="submit" value="Rate!">
+  </form>
+  </div>
+
+  <div *ngIf="cake != null">
+  <app-mongoose [cake]="cake"></app-mongoose>
+  </div>
+
+    <form (submit)="onSubmit()">
+    <p>{{ newCake | json }}</p>
+    <label>Baker's Name:
+    <input type="text" name="newCake.baker_name" [(ngModel)]="newCake.baker_name"/>
+    </label><br/>
+    <label>Image URL:
+    <input type="text" name="newCake.image_url" [(ngModel)]="newCake.image_url"/>
+    </label><br/>
+    <input type="submit" value="Bake a Cake">
+    </form>
+
+
+<router-outlet></router-outlet>

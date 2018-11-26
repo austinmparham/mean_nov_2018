@@ -23,7 +23,7 @@ app.use(bodyParser.json());
 // Require path
 var path = require('path');
 // Setting our Static Folder Directory
-app.use(express.static(path.join(__dirname, './static')));
+app.use(express.static(__dirname + '/public/dist/public'));
 // Setting our Views Folder Directory
 app.set('views', path.join(__dirname, './views'));
 // Setting our View Engine set to EJS
@@ -31,10 +31,10 @@ app.set('view engine', 'ejs');
 // Routes
 // Root Request
 // *************************List of Mongeese****************************//
-app.get('/', function(req, res) {
+app.get('/mongeese', function(req, res) {
   Mongoose.find({}, function(err, mongeese){
     console.log("***********",mongeese);
-    res.json(mongeese);
+    res.json();
   });
 })
 // **************************Form for new Mongoose***************************//
@@ -64,13 +64,13 @@ app.post('/new_mongoose', function(req, res) {
       console.log('something went wrong');
     } else { // else console.log that we did well and then redirect to the root route
       console.log('successfully added a user!');
-      res.redirect('/');
+      res.json({data: mongoose,error: err});
     }
   })
 })
 // ***********************Mongoose Info******************************//
 app.get('/:name', function(req, res) {
-  console.log("*****ID Procured******",req.params.id);
+  console.log("*****ID Procured for Info******",req.params.id);
   Mongoose.findOne({name:req.params.name}, function(err, mongoose){
     res.json(mongoose);
   });
@@ -78,7 +78,7 @@ app.get('/:name', function(req, res) {
 
 // ***********************Mongoose Edit******************************//
 app.get('/mongeese/edit/:id', function(req,res){
-  console.log("*****ID Procured******",req.params.id);
+  console.log("*****ID Procured for Edit******",req.params.id);
   Mongoose.findOne({_id:req.params.id}, function(err, mongoose){
     res.render('edit',{mongoose: mongoose});
   });
@@ -86,23 +86,23 @@ app.get('/mongeese/edit/:id', function(req,res){
 
 // ***********************Submit Edit Form******************************//
 app.post('/mongeese/:id',function(req,res){
-  console.log("*****ID Procured******",req.params.id);
-  Mongoose.update({_id:req.params.id}, {name:req.body.name,age:req.body.age,gender:req.body.gender,favorite_food:req.body.favorite_food}, function(err){  
+  console.log("*****ID Procured for Edit******",req.params.id);
+  var mongoose = Mongoose.update({_id:req.params.id}, {name:req.body.name,age:req.body.age,gender:req.body.gender,favorite_food:req.body.favorite_food}, function(err){  
   });
-    res.redirect('/');
+    res.json({data: mongoose});
 
 });
 
 // ***********************Kill a Mongoose******************************//
 app.get('/destroy/:name',function(req,res){
-  console.log("*****ID Procured******",req.params.id);
+  console.log("*****ID Procured for Delete******",req.params.id);
   Mongoose.remove({name:req.params.name}, function(err){
     Mongoose.find({}, function(err, mongeese){
     console.log("***********",mongeese);
-    res.json(mongeese);
+    res.json();
     });
   });
-    res.redirect('/');
+    res.json();
 });
 // ***********************Server Setting******************************//
 // Setting our Server to Listen on Port: 8000

@@ -1,0 +1,12 @@
+<h2>Register a Restaurant</h2>
+<p>{{ newRestaurant | json }}</p>
+<form (submit)="addRestaurant()">
+	<label>Name:
+		<input type="text" name="newRestaurant.name" [(ngModel)]="newRestaurant.name">
+	</label><br/>
+	<label>Cuisine:
+		<input type="text" name="newRestaurant.cuisine" [(ngModel)]="newRestaurant.cuisine">
+	</label><br/>
+	<input type="submit" name="Register">
+</form>
+<a href="/restaurants">Cancel</a>

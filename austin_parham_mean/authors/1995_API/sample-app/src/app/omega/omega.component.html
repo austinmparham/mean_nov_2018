@@ -1,0 +1,17 @@
+<h1>Edit Product</h1>
+<h2>{{ product.title }}</h2>
+<!-- <p>{{ errors.errors.author_name.message | json  }}</p>
+ --><form (submit)="updateProduct(product._id)">
+	<label>Title:
+	<input type="text" name="edits.title" [(ngModel)]="edits.title" value="{{product.title}}"/>
+	</label><br/>
+	<label>Price:
+	<input type="text" name="edits.price" [(ngModel)]="edits.price" value="{{product.price}}"/>
+	</label><br/>
+	<label>Image URL:
+	<input type="text" name="edits.url" [(ngModel)]="edits.url" value="{{product.url}}"/>
+	</label><br/>
+	<input type="submit" value="Edit">
+</form>
+<p>{{ product | json }}</p>
+<p>{{ edits | json }}</p>

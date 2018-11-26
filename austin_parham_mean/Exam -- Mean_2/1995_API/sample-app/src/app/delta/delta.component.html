@@ -1,0 +1,6 @@
+<form (submit)="addValue()">
+	<input type="number" name="buy" [(ngModel)]="buy" >
+	<input type="submit" value="Buy!">
+</form>
+<h3>Current BitCoin value is ${{ value }}</h3>
+<h3>Number of BitCoin currently owned: {{ coins }}</h3>

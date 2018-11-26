@@ -1,0 +1,13 @@
+<table class="table">
+	<tr>
+		<th>Action</th>
+		<th>Amount</th>
+		<th>Value</th>	
+	</tr>
+	<tr *ngFor="let action of ledger">
+		<td>{{ action[0] }}</td>
+		<td>{{ action[1] }}</td>
+		<td>{{ action[2] }}</td>
+		<td><button [routerLink]="['/omega',action[3]]">Details</button></td>
+	</tr>
+</table>

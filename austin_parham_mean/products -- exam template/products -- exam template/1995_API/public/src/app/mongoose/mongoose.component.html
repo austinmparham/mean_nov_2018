@@ -1,0 +1,6 @@
+ <h2>{{cake.baker_name}}</h2>
+ <img class="cake_pic" src="{{cake.image_url}}" alt="cake.baker_name cake_img">
+ <div *ngFor="let rating of cake.ratings">
+ 	<h3>{{ rating.star_rate }} - {{ rating.comment }}</h3>
+ </div>
+ 

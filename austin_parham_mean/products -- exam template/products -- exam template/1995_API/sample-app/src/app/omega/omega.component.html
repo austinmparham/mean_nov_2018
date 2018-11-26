@@ -1,0 +1,14 @@
+<h1>Edit A Restaurant</h1>
+<h2>{{ restaurant.name }}</h2>
+<p>{{ errors | json  }}</p>
+<form (submit)="updateRestaurant(restaurant._id)">
+	<label>Name:
+	<input type="text" name="edits.name" [(ngModel)]="edits.name" value="{{restaurant.name}}"/>
+	</label><br/>
+	<label>Price:
+	<input type="text" name="edits.cuisine" [(ngModel)]="edits.cuisine" value="{{restaurant.cuisine}}"/>
+	</label><br/>
+	<input type="submit" value="Edit">
+</form>
+<p>{{ restaurant | json }}</p>
+<p>{{ edits | json }}</p>
